@@ -8,8 +8,6 @@ from homeassistant.const import (ATTR_ENTITY_ID, CONF_MODE, CONF_BRIGHTNESS)
 from homeassistant.helpers.entity import Entity, generate_entity_id
 from homeassistant.helpers.entity_component import EntityComponent
 
-REQUIREMENTS = ["pydreamscreen>=0.0.6"]
-
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'dreamscreen'
@@ -119,6 +117,7 @@ def async_setup(hass, config):
 
     entities = []
     entity_ids = []
+    _LOGGER.warn("Configuration: %s" % hass.config.get(DOMAIN))
     for device in pydreamscreen.get_devices():
         entity = DreamScreenEntity(device=device,
                                    current_ids=entity_ids)
